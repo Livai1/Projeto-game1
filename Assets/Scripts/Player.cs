@@ -11,9 +11,10 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] private float spd;
-    [SerializeField] private float jumpForce,DoubleForce;
+    [SerializeField] private float jumpForce,doubleForce;
+
+    private bool isJumping, doubleJump;
     private float axisX;
-    
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator anim;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Move();
+        Jump();
     }
 
     //movimentacao do personagem
@@ -52,7 +54,33 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
+        if(Input.GetButtonDown("Jump"))
+        {
+            if(!isJumping)
+            {
+                anim.SetInteger("transition", 2);
+                rb.AddForce(new Vector2(0,jumpForce), ForceMode2D.Impulse);
+                doubleJump = true;
+                isJumping = true;
+            }
 
+            else
+            {
+                if(doubleJump)
+                {
+                    anim.SetInteger("transition", 2);
+                    rb.AddForce(new Vector2(0, doubleForce), ForceMode2D.Impulse);
+                    doubleJump = false;
+                }
+            }
+        }
     }
 
+    private void OnCollisionEnter2D(Collision2D coll) 
+    {
+        if(coll.gameObject.layer == 3)
+        {
+            isJumping = false;
+        }
+    }
 }
