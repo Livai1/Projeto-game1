@@ -44319,8 +44319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spd: 5.5
-  jumpForce: 10
-  DoubleForce: 15
+  jumpForce: 8
+  doubleForce: 10
 --- !u!95 &1676035893
 Animator:
   serializedVersion: 5
