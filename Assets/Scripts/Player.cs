@@ -13,27 +13,30 @@ public class Player : MonoBehaviour
     [SerializeField] private float spd;
     [SerializeField] private float jumpForce,doubleForce;
 
+    [SerializeField] private GameObject bow;
+    [SerializeField] private Transform firePoint;
     private bool isJumping, doubleJump;
     private bool isFire;
     private float axisX;
     private Rigidbody2D rb;
-    private SpriteRenderer sr;
     private Animator anim;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        Move();
         Jump();
         BowFire();
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
     //movimentacao do personagem
     private void Move()
     {
@@ -47,7 +50,7 @@ public class Player : MonoBehaviour
             {
                 anim.SetInteger("transition", 1);
             }
-            sr.flipX = false;
+            transform.eulerAngles = new Vector3(0,0,0);
         }
 
         if(axisX < 0)
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
             {
                 anim.SetInteger("transition", 1);
             }
-            sr.flipX = true;
+            transform.eulerAngles = new Vector3(0,180,0);
         }
 
         if(axisX == 0 && !isJumping && !isFire)
@@ -101,8 +104,20 @@ public class Player : MonoBehaviour
         {
         isFire = true;
         anim.SetInteger("transition", 3);
-        yield return new WaitForSeconds(1f);
-        anim.SetInteger("transition", 0);
+        GameObject Bow = Instantiate(bow, firePoint.position,firePoint.rotation);
+
+        if(transform.rotation.y == 0)
+        {
+            Bow.GetComponent<Bow>().isRight = true;
+        }
+
+        if(transform.rotation.y == 180)
+        {
+            Bow.GetComponent<Bow>().isRight = false;
+        }
+
+            yield return new WaitForSeconds(0.4f);
+            anim.SetInteger("transition", 0);
         }
     }
 
