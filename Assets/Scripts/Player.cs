@@ -41,14 +41,26 @@ public class Player : MonoBehaviour
 
         if(axisX > 0)
         {
+            if(!isJumping)
+            {
+                anim.SetInteger("transition", 1);
+            }
             sr.flipX = false;
         }
 
         if(axisX < 0)
         {
+            if(!isJumping)
+            {
+                anim.SetInteger("transition", 1);
+            }
             sr.flipX = true;
         }
 
+        if(axisX == 0 && !isJumping)
+        {
+            anim.SetInteger("transition", 0);
+        }
     }
 
 
