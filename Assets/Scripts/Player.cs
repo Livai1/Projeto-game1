@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce,doubleForce;
 
     private bool isJumping, doubleJump;
+    private bool isFire;
     private float axisX;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+        BowFire();
     }
 
     //movimentacao do personagem
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
             sr.flipX = true;
         }
 
-        if(axisX == 0 && !isJumping)
+        if(axisX == 0 && !isJumping && !isFire)
         {
             anim.SetInteger("transition", 0);
         }
@@ -85,6 +87,22 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
+        }
+    }
+
+    private void BowFire()
+    {
+        StartCoroutine("Fire");
+    }
+
+    IEnumerator Fire()
+    {   
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+        isFire = true;
+        anim.SetInteger("transition", 3);
+        yield return new WaitForSeconds(1f);
+        anim.SetInteger("transition", 0);
         }
     }
 
