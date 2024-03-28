@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bow : MonoBehaviour
+public class enemyPatrol : MonoBehaviour
 {
-    void Start()
-    {
-
+    void Start() {
+        
     }
 
     void FixedUpdate()
     {
-        
+
     }
 }

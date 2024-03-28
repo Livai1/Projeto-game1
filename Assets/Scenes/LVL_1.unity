@@ -2943,7 +2943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c380efb059675e47a6e69ef82f85d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smooth: 5
 --- !u!1 &544308238
 GameObject:
   m_ObjectHideFlags: 0
@@ -44482,10 +44481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spd: 5.5
-  jumpForce: 8
-  doubleForce: 10
-  bow: {fileID: 846190849655078039, guid: d7a55500d5782914c804aced5fa14c11, type: 3}
-  firePoint: {fileID: 1261122071}
+  jumpForce: 10
+  doubleForce: 20
 --- !u!95 &1676035893
 Animator:
   serializedVersion: 5
