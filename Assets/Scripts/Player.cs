@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce, doubleForce;
     private float axisX;
     private bool isJumping, doubleJump;
+    private bool isFire;
     private Rigidbody2D rb;
     private Animator anim;
    
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Jump();
+        BowFire();
     }
     
     void FixedUpdate()
@@ -80,6 +82,24 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
+        }
+    }
+
+    void BowFire()
+    {
+        StartCoroutine("Fire");
+    } 
+
+    IEnumerator Fire()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {   isFire = true;
+            anim.SetInteger("transition", 3);
+
+
+            yield return  new WaitForSeconds(0.04f);
+            isFire = false;
+            anim.SetInteger("transition", 0);
         }
     }
 
