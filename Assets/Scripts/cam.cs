@@ -21,7 +21,5 @@ public class cam : MonoBehaviour
             Vector3 following = new Vector3(player.position.x, player.position.y, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, following, smooth * Time.deltaTime);
         }    
-
-
     }
 }
