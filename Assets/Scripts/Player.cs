@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform firePoint;
-    [SerializeField] private GameObject bow;
+    [SerializeField] private int health;
     [SerializeField] private float spd;
     [SerializeField] private float jumpForce, doubleForce;
     private float axisX;
+    
     private bool isJumping, doubleJump;
     private bool isFire;
+
+    [SerializeField] private GameObject bow;
+    [SerializeField] private Transform firePoint;
     private Rigidbody2D rb;
     private Animator anim;
    
@@ -18,6 +21,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        GameC.instance.updateLives(health);
     }
 
     void Update()
@@ -115,6 +120,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+
+        if(health <=0)
+        {
+            //chamar game over
+
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
