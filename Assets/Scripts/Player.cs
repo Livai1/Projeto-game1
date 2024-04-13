@@ -123,6 +123,18 @@ public class Player : MonoBehaviour
     public void Damage(int dmg)
     {
         health -= dmg;
+        GameC.instance.updateLives(health);
+        anim.SetTrigger("hit");
+
+        if(transform.rotation.y == 180)
+        {
+            rb.AddForce(Vector2.left * 5, ForceMode2D.Impulse);
+        }
+
+        if(transform.rotation.y == 0)
+        {
+            rb.AddForce(Vector2.right * 5, ForceMode2D.Impulse);
+        }
 
         if(health <=0)
         {

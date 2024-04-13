@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    private float timer;
-    private bool WalkRight;
     [SerializeField] private float walkTime, speed;
     [SerializeField] private float health;
+    private float timer;
+
+    private bool WalkRight;
+
+    private int damage = 2;
+
     private Rigidbody2D rig;
     private Animator anim;
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -51,6 +56,14 @@ public class enemy : MonoBehaviour
         {
             //destroi o inimigo
             Destroy(gameObject);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D coll) 
+    {
+        if(coll.gameObject.tag == "Player")
+        {
+            coll.gameObject.GetComponent<Player>().Damage(damage);
         }
     }
 }

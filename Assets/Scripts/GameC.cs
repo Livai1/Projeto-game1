@@ -8,7 +8,7 @@ public class GameC : MonoBehaviour
     
     public static GameC instance;
 
-    void Start()
+    void Awake()
     {
         instance = this;
     }
