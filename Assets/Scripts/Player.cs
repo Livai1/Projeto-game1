@@ -1,36 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private GameObject bow;
+
     [SerializeField] private int health;
+    
     [SerializeField] private float spd;
     [SerializeField] private float jumpForce, doubleForce;
     private float axisX;
-    
+
     private bool isJumping, doubleJump;
     private bool isFire;
 
-    [SerializeField] private GameObject bow;
-    [SerializeField] private Transform firePoint;
+
     private Rigidbody2D rb;
     private Animator anim;
-   
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        GameC.instance.updateLives(health);
+        GameC.Instance.UpdateLives(health);
     }
 
     void Update()
     {
-        Jump();
         BowFire();
+        Jump();
     }
-    
+
     void FixedUpdate()
     {
         Move();
@@ -49,7 +53,6 @@ public class Player : MonoBehaviour
                 anim.SetInteger("transition", 1);
             }
             transform.eulerAngles = new Vector3(0,0,0);
-            Debug.Log("andei pra direita");
         }
 
         if(axisX < 0)
@@ -57,9 +60,8 @@ public class Player : MonoBehaviour
             if(!isJumping)
             {
                 anim.SetInteger("transition", 1);
-            }
-                transform.eulerAngles = new Vector3(0,180,0);
-                Debug.Log("andei para esquerda");
+            }    
+            transform.eulerAngles = new Vector3(0,180,0);
         }
 
         if(axisX == 0 && !isJumping && !isFire)
@@ -75,7 +77,7 @@ public class Player : MonoBehaviour
             if(!isJumping)
             {
                 anim.SetInteger("transition", 2);
-                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(0, jumpForce),ForceMode2D.Impulse);
                 doubleJump = true;
                 isJumping = true;
             }
@@ -95,14 +97,15 @@ public class Player : MonoBehaviour
     void BowFire()
     {
         StartCoroutine("Fire");
-    } 
+    }
 
     IEnumerator Fire()
     {
         if(Input.GetKeyDown(KeyCode.F))
-        {   isFire = true;
+        {
+            isFire = true;
             anim.SetInteger("transition", 3);
-            GameObject Bow = Instantiate(bow,firePoint.position, firePoint.rotation);
+            GameObject Bow = Instantiate(bow, firePoint.position, firePoint.rotation);
 
             if(transform.rotation.y == 0)
             {
@@ -111,10 +114,10 @@ public class Player : MonoBehaviour
 
             if(transform.rotation.y == 180)
             {
-                Bow.GetComponent<Bow>().isRight = false;
+                Bow.GetComponent<Bow>().isRight = true;
             }
 
-            yield return  new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(0.04f);
             isFire = false;
             anim.SetInteger("transition", 0);
         }
@@ -123,22 +126,22 @@ public class Player : MonoBehaviour
     public void Damage(int dmg)
     {
         health -= dmg;
-        GameC.instance.updateLives(health);
+        GameC.Instance.UpdateLives(health);
         anim.SetTrigger("hit");
-
-        if(transform.rotation.y == 180)
-        {
-            rb.AddForce(Vector2.left * 5, ForceMode2D.Impulse);
-        }
 
         if(transform.rotation.y == 0)
         {
-            rb.AddForce(Vector2.right * 5, ForceMode2D.Impulse);
+           transform.position += new Vector3(-0.5f,0,0);
         }
 
-        if(health <=0)
+        if(transform.rotation.y == 180)
         {
-            //chamar game over
+            transform.position += new Vector3(0.5f,0,0);
+        }
+    
+        if(health < 0)
+        {
+            //GameOver
 
         }
     }

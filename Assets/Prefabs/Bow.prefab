@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1912751174916879885}
   - component: {fileID: 1925971148236492070}
   - component: {fileID: 6569520873106269403}
-  - component: {fileID: -2330511648433177736}
+  - component: {fileID: 4299843938247203875}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &-2330511648433177736
+--- !u!114 &4299843938247203875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,6 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265c427704de7d54c9ea5d4659743f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   speed: 5
-  damage: 2
   isRight: 0

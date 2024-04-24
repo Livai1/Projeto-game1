@@ -2,24 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class GameC : MonoBehaviour
 {
-    public Text healthText;
-    
-    public static GameC instance;
+   public Text HealthText;
+   public static GameC Instance;
 
-    void Awake()
-    {
-        instance = this;
-    }
+   void Awake()
+   {
+      Instance = this;
+   }
 
-    void Update()
-    {
-        
-    }
-
-    public void updateLives(int value)
-    {
-        healthText.text = "x " + value.ToString();
-    }
+   public void UpdateLives(int value)
+   {
+      HealthText.text = "x" + value.ToString();
+   }
 }

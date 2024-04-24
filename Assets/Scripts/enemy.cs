@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class enemy : MonoBehaviour
 {
-    [SerializeField] private float walkTime, speed;
-    [SerializeField] private float health;
+    [SerializeField] private int health;
+    [SerializeField] private int damage;
+
+    [SerializeField] private float speed;
+    [SerializeField] private float walkTime;
     private float timer;
-
-    private bool WalkRight;
-
-    private int damage = 2;
 
     private Rigidbody2D rig;
     private Animator anim;
+    
+    private bool walkRight;
 
     void Start()
     {
@@ -21,25 +24,27 @@ public class enemy : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        //timer para o inimigo se movimentar
-        timer+= Time.deltaTime;
+        timer += Time.deltaTime;
 
         if(timer >= walkTime)
         {
-            timer = 0f;
-            WalkRight = !WalkRight;
-        }
+            timer = 0;
 
-        //faz o inimigo andar para o lado direito
-        if(WalkRight)
+            walkRight = !walkRight;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(walkRight)
         {
             transform.eulerAngles = new Vector2(0,180);
             rig.velocity = Vector2.right * speed;
         }
-        //anda pro lado esquerdo
-        else
+
+        else 
         {
             transform.eulerAngles = new Vector2(0,0);
             rig.velocity = Vector2.left * speed;
@@ -48,22 +53,20 @@ public class enemy : MonoBehaviour
 
     public void Damage(int dmg)
     {
-        //animacao e perda de vida do inimigo
         health -= dmg;
         anim.SetTrigger("hit");
 
-        if(health <= 0)
+        if(health < 0)
         {
-            //destroi o inimigo
             Destroy(gameObject);
         }
-    }
+    } 
 
-    public void OnCollisionEnter2D(Collision2D coll) 
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        if(coll.gameObject.tag == "Player")
+         if(coll.gameObject.tag == "Player")
         {
             coll.gameObject.GetComponent<Player>().Damage(damage);
-        }
+        }   
     }
 }
