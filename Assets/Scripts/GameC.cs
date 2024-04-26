@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class GameC : MonoBehaviour
 {
-   public Text HealthText;
+   public Text healthText;
+   
+   public int score;
+   public Text coinText;
+
    public static GameC Instance;
 
    void Awake()
@@ -13,8 +17,15 @@ public class GameC : MonoBehaviour
       Instance = this;
    }
 
+
    public void UpdateLives(int value)
    {
-      HealthText.text = "x" + value.ToString();
+      healthText.text = "x" + value.ToString();
+   }
+
+   public void UpdateCoins(int Value)
+   {
+      score += Value;
+      coinText.text = score.ToString();
    }
 }

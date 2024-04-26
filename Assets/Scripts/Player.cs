@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int health;
     
+
     [SerializeField] private float spd;
     [SerializeField] private float jumpForce, doubleForce;
     private float axisX;
