@@ -1066,6 +1066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed566b266e876c42831ff5326a2ed7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthText: {fileID: 1771309524}
 --- !u!4 &143023805
 Transform:
   m_ObjectHideFlags: 0
@@ -5630,6 +5631,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2153624370648713359, guid: 4f2c2837c7bc90a4c8147256c84c7039, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2153624370648713359, guid: 4f2c2837c7bc90a4c8147256c84c7039, type: 3}
       propertyPath: health
       value: 5
@@ -44646,6 +44651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 201682859}
   bow: {fileID: 846190849655078039, guid: d7a55500d5782914c804aced5fa14c11, type: 3}
+  health: 10
   spd: 5.5
   jumpForce: 8
   doubleForce: 10
