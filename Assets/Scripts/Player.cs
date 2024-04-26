@@ -146,6 +146,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void IncreaseLife(int value)
+    {
+        health += value;
+        GameC.Instance.UpdateLives(health);
+    }
+
     private void OnCollisionEnter2D(Collision2D coll)
     {
         if(coll.gameObject.layer == 3)
