@@ -5,22 +5,21 @@ using UnityEngine;
 public class Bow : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] private  int damage;
-
-    public bool isRight; 
+    
+    public bool isRight = false;
 
     private Rigidbody2D rig;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 1.5f);
+        Destroy(gameObject);
     }
     void FixedUpdate()
     {
         if(isRight)
         {
-            rig.velocity = Vector2.right * speed; 
+            rig.velocity = Vector2.right * speed;
         }
 
         else
@@ -29,13 +28,8 @@ public class Bow : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider) 
-    {
-        if(collider.gameObject.tag == "Enemy")
-        {
-            collider.GetComponent<enemy>().Damage(damage);
-            Destroy(gameObject);
-        }
-    }
-    
+    // public void OnTriggerEnter2D(Collider2D coll)
+    // {
+
+    // }
 }

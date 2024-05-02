@@ -12,15 +12,15 @@ public class cam : MonoBehaviour
 
    void Start()
    {
-      player = GameObject.FindGameObjectWithTag("Player").transform;
+      player = GameObject.FindGameObjectWithTag("Player").transform;      
    }
 
    void LateUpdate()
    {
-      if(player.position.x >= -3)
+      if(player.position.x > -3)
       {
-      Vector3 following =  new Vector3(player.position.x, player.position.y, transform.position.z);
-      transform.position = Vector3.Lerp(transform.position, following, smooth * Time.deltaTime);
+         Vector3 following = new Vector3(player.position.x, player.position.y, transform.position.z);
+         transform.position = Vector3.Lerp(transform.position, following, smooth * Time.deltaTime);
       }
    }
 }

@@ -8,16 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bow;
 
-    [SerializeField] private int health;
-    
-
     [SerializeField] private float spd;
     [SerializeField] private float jumpForce, doubleForce;
+
     private float axisX;
 
     private bool isJumping, doubleJump;
     private bool isFire;
-
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -26,8 +23,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        GameC.Instance.UpdateLives(health);
     }
 
     void Update()
@@ -61,10 +56,9 @@ public class Player : MonoBehaviour
             if(!isJumping)
             {
                 anim.SetInteger("transition", 1);
-            }    
+            }
             transform.eulerAngles = new Vector3(0,180,0);
         }
-
         if(axisX == 0 && !isJumping && !isFire)
         {
             anim.SetInteger("transition", 0);
@@ -78,12 +72,12 @@ public class Player : MonoBehaviour
             if(!isJumping)
             {
                 anim.SetInteger("transition", 2);
-                rb.AddForce(new Vector2(0, jumpForce),ForceMode2D.Impulse);
-                doubleJump = true;
+                rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 isJumping = true;
+                doubleJump = true;
             }
 
-            else 
+            else
             {
                 if(doubleJump)
                 {
@@ -93,6 +87,8 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     void BowFire()
@@ -108,12 +104,12 @@ public class Player : MonoBehaviour
             anim.SetInteger("transition", 3);
             GameObject Bow = Instantiate(bow, firePoint.position, firePoint.rotation);
 
-            if(transform.rotation.y == 0)
+            if(transform.rotation.y == 180)
             {
-                Bow.GetComponent<Bow>().isRight = true;
+                Bow.GetComponent<Bow>().isRight = false;
             }
 
-            if(transform.rotation.y == 180)
+            if(transform.rotation.y == 0)
             {
                 Bow.GetComponent<Bow>().isRight = true;
             }
@@ -122,35 +118,6 @@ public class Player : MonoBehaviour
             isFire = false;
             anim.SetInteger("transition", 0);
         }
-    }
-
-    public void Damage(int dmg)
-    {
-        health -= dmg;
-        GameC.Instance.UpdateLives(health);
-        anim.SetTrigger("hit");
-
-        if(transform.rotation.y == 0)
-        {
-           transform.position += new Vector3(-0.5f,0,0);
-        }
-
-        if(transform.rotation.y == 180)
-        {
-            transform.position += new Vector3(0.5f,0,0);
-        }
-    
-        if(health < 0)
-        {
-            //GameOver
-
-        }
-    }
-
-    public void IncreaseLife(int value)
-    {
-        health += value;
-        GameC.Instance.UpdateLives(health);
     }
 
     private void OnCollisionEnter2D(Collision2D coll)

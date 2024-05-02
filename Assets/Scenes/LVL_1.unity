@@ -1066,9 +1066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed566b266e876c42831ff5326a2ed7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1771309524}
-  score: 0
-  coinText: {fileID: 621289531}
 --- !u!4 &143023805
 Transform:
   m_ObjectHideFlags: 0
@@ -45039,7 +45036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 201682859}
   bow: {fileID: 846190849655078039, guid: d7a55500d5782914c804aced5fa14c11, type: 3}
-  health: 10
   spd: 5.5
   jumpForce: 8
   doubleForce: 10
