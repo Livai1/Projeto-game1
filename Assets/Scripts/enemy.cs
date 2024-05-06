@@ -10,6 +10,8 @@ public class enemy : MonoBehaviour
     [SerializeField] private float walkTime;
     private float timer;
 
+    [SerializeField] private int dmg;
+
     private bool walkRight;
 
     private Rigidbody2D rig;
@@ -42,6 +44,13 @@ public class enemy : MonoBehaviour
             transform.eulerAngles = new Vector2(0,0);
             rig.velocity = Vector2.left * speed;
         }
+    }
 
+    private void  OnCollisionEnter2D(Collision2D coll) 
+    {
+        if(coll.gameObject.tag == "Player")
+        {
+            coll.gameObject.GetComponent<Player>().Damage(dmg);
+        }
     }
 }

@@ -27,9 +27,4 @@ public class Bow : MonoBehaviour
             rig.velocity = Vector2.left * speed;
         }
     }
-
-    // public void OnTriggerEnter2D(Collider2D coll)
-    // {
-
-    // }
 }

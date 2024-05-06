@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -10,8 +11,9 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float spd;
     [SerializeField] private float jumpForce, doubleForce;
-
     private float axisX;
+
+    [SerializeField] private int health;
 
     private bool isJumping, doubleJump;
     private bool isFire;
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        GameC.Instance.UpdateLives(health);
     }
 
     void Update()
@@ -120,11 +124,45 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+        anim.SetTrigger("hit");
+        GameC.Instance.UpdateLives(health);
+
+        if(transform.rotation.y == 0)
+        {
+            transform.position += new Vector3(-0.5f,0,0);
+        }
+
+        if(transform.rotation.y == 180)
+        {
+            transform.position += new Vector3(0.5f,0,0);
+        }
+
+        if(health <= 0)
+        {
+            //GameOver
+            GameC.Instance.GameOver();
+        }
+    }
+
+    public void IncreaseLife(int value)
+    {   
+        health += value;
+        GameC.Instance.UpdateLives(health);
+    }
+
     private void OnCollisionEnter2D(Collision2D coll)
     {
         if(coll.gameObject.layer == 3)
         {
             isJumping = false;
+        }
+
+        if(coll.gameObject.layer == 6)
+        {
+            GameC.Instance.GameOver();
         }
     }
 }
