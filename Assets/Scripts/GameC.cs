@@ -49,7 +49,7 @@ public class GameC : MonoBehaviour
 
     public void PauseGame()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
             pauseObj.SetActive(isPaused);
