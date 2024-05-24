@@ -5,16 +5,19 @@ using UnityEngine;
 public class Bow : MonoBehaviour
 {
     [SerializeField] private float speed;
-    
-    public bool isRight = false;
+
+    private int dmg = 1;
+
+    public bool isRight;
 
     private Rigidbody2D rig;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        Destroy(gameObject);
+        Destroy(gameObject, 1.5f);
     }
+
     void FixedUpdate()
     {
         if(isRight)
@@ -22,9 +25,18 @@ public class Bow : MonoBehaviour
             rig.velocity = Vector2.right * speed;
         }
 
-        else
+        else 
         {
             rig.velocity = Vector2.left * speed;
         }
+    }
+
+    private  void OnTriggerEnter2D(Collider2D other) 
+    {
+         if(other.gameObject.tag == "Enemy")
+         {
+            other.gameObject.GetComponent<enemy>().Damage(dmg);
+            Destroy(gameObject);
+         }
     }
 }

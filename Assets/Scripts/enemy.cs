@@ -6,47 +6,64 @@ using Vector2 = UnityEngine.Vector2;
 
 public class enemy : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float walkTime;
-    private float timer;
 
-    [SerializeField] private int dmg;
+    [SerializeField] private float walkTime, speed;
+    
+    private float timer;
 
     private bool walkRight;
 
-    private Rigidbody2D rig;
+    private int health = 5;
+    private int dmg = 1;
+
+    private Rigidbody2D rig2D;
+    private Animator anim;
 
     void Start()
     {
-        rig = GetComponent<Rigidbody2D>();
+         rig2D = GetComponent<Rigidbody2D>();
+         anim = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        timer += Time.deltaTime;
+
+        if(timer >= walkTime)
+        {
+            timer = 0f;
+
+            walkRight = !walkRight;
+        }
     }
 
     void FixedUpdate()
     {
-        timer+= Time.deltaTime;
-
-        if(timer >= walkTime)
-        {
-            timer= 0f;
-
-            walkRight = !walkRight;
-
-        }
-
         if(walkRight)
         {
             transform.eulerAngles = new Vector2(0,180);
-            rig.velocity = Vector2.right * speed;
+            rig2D.velocity = Vector2.right * speed;
         }
 
-        else
+        else 
         {
             transform.eulerAngles = new Vector2(0,0);
-            rig.velocity = Vector2.left * speed;
+            rig2D.velocity = Vector2.left * speed;
         }
     }
 
-    private void  OnCollisionEnter2D(Collision2D coll) 
+    public void Damage(int dmg)
+    {
+        health -= dmg;
+        anim.SetTrigger("hit");
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
     {
         if(coll.gameObject.tag == "Player")
         {
