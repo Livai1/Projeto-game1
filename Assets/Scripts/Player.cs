@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        GameC.Instance.UpdateLives(health);
     }
 
     void Update()
@@ -126,13 +127,29 @@ public class Player : MonoBehaviour
     {
         health -= dmg;
         anim.SetTrigger("hit");
+        GameC.Instance.UpdateLives(health);
 
-        
+        if(transform.rotation.y == 0)
+        {
+            transform.position += new Vector3(-0.15f,0,0);
+        }
+
+        if(transform.rotation.y == 180)
+        {
+            transform.position += new Vector3(0.15f,0,0);
+        }
+
         if(health <= 0)
         {
             //GameOver
-
+            GameC.Instance.GameOver();
         }       
+    }
+
+    public void IncreaseLife(int value)
+    {
+        health += value;
+        GameC.Instance.UpdateLives(health);
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
