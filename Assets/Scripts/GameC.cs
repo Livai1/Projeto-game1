@@ -83,4 +83,4 @@ public class GameC : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    }
+}
