@@ -10,8 +10,10 @@ public class enemy : MonoBehaviour
     [SerializeField] private float walkTime, speed;
     
     private float timer;
+    private float force;
 
     private bool walkRight;
+    private bool stomp;
 
     private int health = 5;
     private int dmg = 1;
@@ -59,8 +61,13 @@ public class enemy : MonoBehaviour
 
         if(health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D coll)

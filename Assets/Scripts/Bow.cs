@@ -33,7 +33,7 @@ public class Bow : MonoBehaviour
 
     private  void OnTriggerEnter2D(Collider2D other) 
     {
-         if(other.gameObject.tag == "Enemy")
+         if(other.gameObject.CompareTag("Enemy"))
          {
             other.gameObject.GetComponent<enemy>().Damage(dmg);
             Destroy(gameObject);

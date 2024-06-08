@@ -10,7 +10,7 @@ public class Cam : MonoBehaviour
     
     void LateUpdate()
     {
-        if(target.position.x >= -3f)
+        if(target.position.x >= -7f)
         {
             Vector3 following = new Vector3(target.position.x + xOffset, target.position.y + yOffset, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, following, speedCam * Time.deltaTime);

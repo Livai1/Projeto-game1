@@ -17,10 +17,10 @@ public class Player : MonoBehaviour
 
     private bool isJumping, doubleJump;
     private bool isFire;
-    
+
     private int health = 5;
     
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator anim;
 
     void Start()
