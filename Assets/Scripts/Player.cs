@@ -13,14 +13,16 @@ public class Player : MonoBehaviour
 
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce, doubleForce;
-    private float axisX;
+    public float axisX;
+    public bool isMobile;
+    public bool isTouch;
 
     private bool isJumping, doubleJump;
     private bool isFire;
 
     private int health = 5;
     
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Animator anim;
 
     void Start()
@@ -44,7 +46,11 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
+        if(!isMobile)
+        {
         axisX = Input.GetAxis("Horizontal");
+        }
+
         rb.velocity = new Vector2(axisX * speed, rb.velocity.y);
 
         if(axisX > 0)
@@ -73,7 +79,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-       if(Input.GetButtonDown("Jump"))
+       if(Input.GetButtonDown("Jump") || isTouch)
        {
             if(!isJumping)
             {
@@ -92,6 +98,7 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
+            isTouch = false;
        } 
     }
 
