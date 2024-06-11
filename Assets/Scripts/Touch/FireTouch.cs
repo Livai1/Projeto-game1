@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class UpTouch : MonoBehaviour, IPointerDownHandler
+public class FireTouch : MonoBehaviour
 {
     private Player player;
 
@@ -12,8 +11,8 @@ public class UpTouch : MonoBehaviour, IPointerDownHandler
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void Fire()
     {
-        player.touchJump = true;
+        player.touchFire = true;
     }
 }

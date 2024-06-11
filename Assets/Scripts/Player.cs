@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce, doubleForce;
     public float axisX;
     public bool isMobile;
-    public bool isTouch;
+    public bool touchJump;
+    public bool touchFire;
 
     private bool isJumping, doubleJump;
     private bool isFire;
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-       if(Input.GetButtonDown("Jump") || isTouch)
+       if(Input.GetButtonDown("Jump") || touchJump)
        {
             if(!isJumping)
             {
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
-            isTouch = false;
+            touchJump = false;
        } 
     }
 
@@ -109,8 +110,9 @@ public class Player : MonoBehaviour
 
     IEnumerator Fire()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F) || touchFire)
         {
+            touchFire = false;
             isFire = true;
             anim.SetInteger("transition", 3);
             GameObject Bow = Instantiate(bow, firePoint.position, firePoint.rotation);
@@ -146,12 +148,11 @@ public class Player : MonoBehaviour
         {
             transform.position += new Vector3(0.15f,0,0);
         }
-
+        
         if(health <= 0)
         {
-            //GameOver
             GameC.Instance.GameOver();
-        }       
+        }
     }
 
     public void IncreaseLife(int value)
@@ -165,6 +166,11 @@ public class Player : MonoBehaviour
         if(coll.gameObject.layer == 3)
         {
             isJumping = false;
+        }
+
+        if(coll.gameObject.layer == 6)
+        {
+            GameC.Instance.GameOver();
         }
     }
 }
