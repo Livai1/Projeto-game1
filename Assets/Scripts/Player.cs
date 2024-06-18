@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     {
         if(!isMobile)
         {
-        axisX = Input.GetAxis("Horizontal");
+            axisX = Input.GetAxis("Horizontal");
         }
 
         rb.velocity = new Vector2(axisX * speed, rb.velocity.y);
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
             {
                 anim.SetInteger("transition", 1);
             }
-            transform.eulerAngles = new Vector3(0,0,0);
+                transform.eulerAngles = new Vector3(0,0,0);
         }
 
         if(axisX < 0)
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
                     doubleJump = false;
                 }
             }
-            touchJump = false;
+                touchJump = false;
        } 
     }
 

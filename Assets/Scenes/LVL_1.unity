@@ -684,7 +684,7 @@ GameObject:
   - component: {fileID: 66708051}
   - component: {fileID: 66708053}
   - component: {fileID: 66708052}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: restartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1641,7 +1641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 197746366}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2216,7 +2216,7 @@ RectTransform:
   m_GameObject: {fileID: 277830517}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86743, y: 0.86743, z: 0.86743}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1565864598}
@@ -2321,7 +2321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9cbda3fc4f72949953b80dae061856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isJump: 0
 --- !u!1 &280602938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,6 +3572,7 @@ GameObject:
   - component: {fileID: 456966557}
   - component: {fileID: 456966556}
   - component: {fileID: 456966555}
+  - component: {fileID: 456966558}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -3589,7 +3589,7 @@ RectTransform:
   m_GameObject: {fileID: 456966553}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0437785, y: 1.0863152, z: 1.0863152}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 242351880}
@@ -3644,7 +3644,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 456966556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 456966558}
+        m_TargetAssemblyTypeName: FireTouch, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &456966556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3683,6 +3695,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456966553}
   m_CullTransparentMesh: 1
+--- !u!114 &456966558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456966553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f976ac898e8879548b0bf395cdb65b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &466504166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4070,7 +4094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1676035888}
   speedCam: 6
-  xOffset: 6.89
+  xOffset: 5.29
   yOffset: 1.91
 --- !u!1 &544308238
 GameObject:
@@ -4669,7 +4693,7 @@ GameObject:
   - component: {fileID: 677130055}
   - component: {fileID: 677130054}
   - component: {fileID: 677130053}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: RESTART
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6541,7 +6565,7 @@ GameObject:
   - component: {fileID: 1027302703}
   - component: {fileID: 1027302705}
   - component: {fileID: 1027302704}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: quitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7409,7 +7433,7 @@ GameObject:
   - component: {fileID: 1206832993}
   - component: {fileID: 1206832995}
   - component: {fileID: 1206832994}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8080,7 +8104,7 @@ GameObject:
   - component: {fileID: 1290314998}
   - component: {fileID: 1290314997}
   - component: {fileID: 1290314996}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: QUIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8296,7 +8320,7 @@ GameObject:
   - component: {fileID: 1319644532}
   - component: {fileID: 1319644534}
   - component: {fileID: 1319644533}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Legacy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8546,7 +8570,7 @@ GameObject:
   - component: {fileID: 1370916879}
   - component: {fileID: 1370916882}
   m_Layer: 5
-  m_Name: RightButton (1)
+  m_Name: LeftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8561,7 +8585,7 @@ RectTransform:
   m_GameObject: {fileID: 1370916876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86743, y: 0.86743, z: 86743}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1416095135}
@@ -10308,7 +10332,8 @@ MonoBehaviour:
   doubleForce: 10
   axisX: 0
   isMobile: 1
-  isTouch: 0
+  touchJump: 0
+  touchFire: 0
 --- !u!50 &1676035896
 Rigidbody2D:
   serializedVersion: 4
@@ -21043,7 +21068,7 @@ RectTransform:
   m_GameObject: {fileID: 1916919307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86743, y: 0.86743, z: 0.86743}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 411003523}
@@ -21702,8 +21727,8 @@ RectTransform:
   - {fileID: 515214314}
   - {fileID: 702449668}
   - {fileID: 1417598898}
-  - {fileID: 197746366}
   - {fileID: 1540541905}
+  - {fileID: 197746366}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
